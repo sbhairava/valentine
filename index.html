@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>For Bipin 💖</title>
+  <style>
+    body {
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
+    }
+
+    .card {
+      background: white;
+      padding: 35px;
+      border-radius: 22px;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      max-width: 360px;
+    }
+
+    h1 {
+      color: #e6005c;
+      margin-bottom: 5px;
+    }
+
+    p {
+      font-size: 16px;
+    }
+
+    button {
+      margin: 14px;
+      padding: 12px 28px;
+      font-size: 16px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: transform 0.2s, font-size 0.2s;
+      position: relative;
+    }
+
+    .yes {
+      background: #ff4d88;
+      color: white;
+    }
+
+    .no {
+      background: #ddd;
+    }
+
+    .hearts {
+      font-size: 34px;
+      animation: float 1s infinite alternate;
+    }
+
+    @keyframes float {
+      from { transform: translateY(0); }
+      to { transform: translateY(-15px); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background Music -->
+  <audio autoplay loop>
+    <source src="shukra_taara.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="card" id="card">
+    <h1>Bipin 💖</h1>
+    <p id="msg">Will you be my Valentine? 😌✨</p>
+
+    <button class="yes" onclick="yesClicked()">Yes 💘</button>
+    <button class="no" id="noBtn" onmouseover="moveNo()">No 🙄</button>
+  </div>
+
+  <script>
+    let attempts = 0;
+
+    function yesClicked() {
+      document.getElementById("card").innerHTML = `
+        <h1>Good boy 😏❤️</h1>
+        <p>I knew you wouldn’t resist.</p>
+        <div class="hearts">❤️ 💕 💖 💘 💓</div>
+        <p style="margin-top:12px;">Happy Valentine’s Day, Bipin 😌💋</p>
+      `;
+    }
+
+    function moveNo() {
+      attempts++;
+
+      const btn = document.getElementById("noBtn");
+      const msg = document.getElementById("msg");
+
+      const x = Math.random() * 240 - 120;
+      const y = Math.random() * 240 - 120;
+      btn.style.transform = translate(${x}px, ${y}px);
+
+      // shrink button
+      const size = Math.max(10, 16 - attempts);
+      btn.style.fontSize = size + "px";
+      btn.style.padding = "6px 14px";
+
+      if (attempts === 2) msg.innerText = "Nice try, Bipin 😌";
+      if (attempts === 4) msg.innerText = "Stop lying to yourself 😏";
+      if (attempts === 6) msg.innerText = "You KNOW the answer ❤️";
+      if (attempts >= 8) msg.innerText = "Just click YES already 💋";
+    }
+  </script>
+
+</body>
+</html>
