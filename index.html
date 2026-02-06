@@ -67,9 +67,9 @@
 <body>
 
   <!-- Background Music -->
-  <audio autoplay loop>
-    <source src="shukra_taara.mp3" type="audio/mpeg">
-  </audio>
+<audio id="bgMusic" loop>
+  <source src="shukra_taara.mp3" type="audio/mpeg">
+</audio>
 
   <div class="card" id="card">
     <h1>Bipin 💖</h1>
@@ -80,38 +80,46 @@
   </div>
 
   <script>
-    let attempts = 0;
+     let attempts = 0;
+  const music = document.getElementById("bgMusic");
 
-    function yesClicked() {
-      document.getElementById("card").innerHTML = `
-        <h1>Good boy 😏❤️</h1>
-        <p>I knew you wouldn’t resist.</p>
-        <div class="hearts">❤️ 💕 💖 💘 💓</div>
-        <p style="margin-top:12px;">Happy Valentine’s Day, Bipin 😌💋</p>
-      `;
+  function playMusic() {
+    if (music.paused) {
+      music.play();
     }
+  }
 
-    function moveNo() {
-      attempts++;
+  function yesClicked() {
+    playMusic();
+    document.getElementById("card").innerHTML = `
+      <h1>Good boy 😏❤️</h1>
+      <p>I knew you wouldn’t resist.</p>
+      <div class="hearts">❤️ 💕 💖 💘 💓</div>
+      <p style="margin-top:12px;">Happy Valentine’s Day, Bipin 😌💋</p>
+    `;
+  }
 
-      const btn = document.getElementById("noBtn");
-      const msg = document.getElementById("msg");
+  function moveNo() {
+    playMusic();
+    attempts++;
 
-      const x = Math.random() * 240 - 120;
-      const y = Math.random() * 240 - 120;
-      btn.style.transform = translate(${x}px, ${y}px);
+    const btn = document.getElementById("noBtn");
+    const msg = document.getElementById("msg");
 
-      // shrink button
-      const size = Math.max(10, 16 - attempts);
-      btn.style.fontSize = size + "px";
-      btn.style.padding = "6px 14px";
+    const x = Math.random() * 240 - 120;
+    const y = Math.random() * 240 - 120;
+    btn.style.transform = translate(${x}px, ${y}px);
 
-      if (attempts === 2) msg.innerText = "Nice try, Bipin 😌";
-      if (attempts === 4) msg.innerText = "Stop lying to yourself 😏";
-      if (attempts === 6) msg.innerText = "You KNOW the answer ❤️";
-      if (attempts >= 8) msg.innerText = "Just click YES already 💋";
-    }
-  </script>
+    const size = Math.max(10, 16 - attempts);
+    btn.style.fontSize = size + "px";
+    btn.style.padding = "6px 14px";
 
+    if (attempts === 2) msg.innerText = "Nice try, Bipin 😌";
+    if (attempts === 4) msg.innerText = "Stop lying to yourself 😏";
+    if (attempts === 6) msg.innerText = "You KNOW the answer ❤️";
+    if (attempts >= 8) msg.innerText = "Just click YES already 💋";
+  }
+</script>
 </body>
+
 </html>
